@@ -17,6 +17,6 @@
         - notepad-plus-plus
         #- intellij-idea-ultimate
         - intellij-idea-community
-    - role: clone-github
+    - role: clone-git-public
     #- role: docker # TODO need to look at, cause docker ps do not work on dev box
     #- role: guest_additions
