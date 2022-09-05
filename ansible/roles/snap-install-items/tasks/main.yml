@@ -1,0 +1,7 @@
+---
+- name: "install packages {{ packages}} with snap"
+  become: yes
+  snap:
+    name: "{{ packages }}"
+    state: present
+    classic: yes

@@ -1,0 +1,6 @@
+---
+dependencies:
+  - role: ansible_facts_packages
+  - role: apt-install-items
+    packages:
+      - snapd

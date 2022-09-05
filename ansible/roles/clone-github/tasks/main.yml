@@ -1,0 +1,16 @@
+---
+- name: "check if project dir exists"
+  stat:
+    path: /home/vagrant/projects
+  register: project_dir
+
+- name: "create project dir if not exists"
+  file:
+    path: /home/vagrant/projects
+    state: directory
+  when: not project_dir.stat.exists
+
+- name: "checkout repository for devbox"
+  git:
+    repo: "https://github.com/krec05/dev-box.git"
+    dest: /home/vagrant/projects

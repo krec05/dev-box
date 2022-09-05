@@ -206,7 +206,7 @@ This is the command that finally packages up the box for you as we defined above
 compressed gzip tarball file, it also generates and includes the Vagrantfile and the metadata.json 
 file.
 ```
-vagrant package --base vagrant-ubuntu64
+vagrant package --base vagrant-ubuntu64 --output ubuntu64
 ```
 Vagrant will then check VirtualBox for any instances of the name vagrant-ubuntu64 and attempt to 
 ssh into them and control them.

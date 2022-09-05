@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  connection: local
+  strategy: debug
+
+  roles:
+    - role: apt-update
+    - role: apt-install-items
+      packages:
+        - vim
+        - curl
+        - unzip
+        - git
+        - terminator
+    - role: snap-install-items
+      packages:
+        - notepad-plus-plus
+        #- intellij-idea-ultimate
+        - intellij-idea-community
+    - role: clone-github
+    #- role: docker # TODO need to look at, cause docker ps do not work on dev box
+    #- role: guest_additions
