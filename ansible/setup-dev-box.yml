@@ -18,5 +18,7 @@
         #- intellij-idea-ultimate
         - intellij-idea-community
     - role: clone-git-public
+      git_url: "https://github.com/krec05/dev-box.git"
+      project_name: "dev-box"
     #- role: docker # TODO need to look at, cause docker ps do not work on dev box
     #- role: guest_additions

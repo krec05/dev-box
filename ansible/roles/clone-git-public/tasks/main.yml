@@ -1,16 +1,16 @@
 ---
 - name: "check if project dir exists"
   stat:
-    path: /home/vagrant/projects
+    path: "/home/vagrant/projects/{{ project_name }}"
   register: project_dir
 
 - name: "create project dir if not exists"
   file:
-    path: /home/vagrant/projects
+    path: "/home/vagrant/projects/{{ project_name }}"
     state: directory
   when: not project_dir.stat.exists
 
 - name: "checkout repository for devbox"
   git:
-    repo: "https://github.com/krec05/dev-box.git"
-    dest: /home/vagrant/projects
+    repo: "{{ git_url }}"
+    dest: "/home/vagrant/projects/{{ project_name }}"
