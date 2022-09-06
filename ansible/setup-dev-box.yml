@@ -15,8 +15,9 @@
     - role: snap-install-items
       packages:
         - notepad-plus-plus
-        #- intellij-idea-ultimate
-        - intellij-idea-community
+        - firefox
+        - intellij-idea-ultimate
+        #- intellij-idea-community
     - role: clone-git-public
       git_url: "https://github.com/krec05/dev-box.git"
       project_name: "dev-box"
