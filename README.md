@@ -1,5 +1,4 @@
-![image info](./icon/dev-box-icon.png)
-# Dev-Box
+# Dev-Box ![image info](./icon/dev-box-icon.png)
 The Dev Box is a virtual Ubuntu 22.04 machine, as a reusable development environment. How to create an own
 vagrant base box from scratch read [here](docs/CreateVagrantBaseBox.md).
 
