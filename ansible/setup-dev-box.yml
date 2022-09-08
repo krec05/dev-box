@@ -17,9 +17,11 @@
         - notepad-plus-plus
         - firefox
         - intellij-idea-ultimate
-        #- intellij-idea-community
     - role: clone-git-public
       git_url: "https://github.com/krec05/dev-box.git"
       project_name: "dev-box"
+    - role: intellij-install-plugins
+      # https://stackoverflow.com/questions/24044513/intellij-idea-install-plugins-from-command-line
+
     #- role: docker # TODO need to look at, cause docker ps do not work on dev box
     #- role: guest_additions

@@ -14,3 +14,4 @@
   git:
     repo: "{{ git_url }}"
     dest: "/home/vagrant/projects/{{ project_name }}"
+  ignore_errors: yes # otherwise local code changes would crash the playbook
