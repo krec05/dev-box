@@ -12,15 +12,18 @@
         - unzip
         - git
         - terminator
+#        - apt-transport-https
+#        - sublime-text
     - role: snap-install-items
       packages:
-        - notepad-plus-plus
         - firefox
-        - intellij-idea-ultimate
     - role: clone-git-public
       git_url: "https://github.com/krec05/dev-box.git"
       project_name: "dev-box"
-    - role: intellij-install-plugins
+    - role: intellij-ultimate
+#      plugin_name: "EclipseFormatter"
+#      plugin_number: 6546 # in der URL https://plugins.jetbrains.com/plugin/6546-adapter-for-eclipse-code-formatter
+
       # https://stackoverflow.com/questions/24044513/intellij-idea-install-plugins-from-command-line
 
     #- role: docker # TODO need to look at, cause docker ps do not work on dev box

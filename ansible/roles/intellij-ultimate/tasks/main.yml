@@ -1,0 +1,60 @@
+---
+# get the latest published version and build of IntelliJ Ultimate
+- name: "get release json"
+  get_url:
+    url: "https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&type=release"
+    dest: "/tmp/idea.json"
+
+- name: "get latest version"
+  shell: cat /tmp/idea.json | grep -oP "\d{4}\.\d{1}\.\d{1}" | head -1
+  register: idea_version
+
+- name: "get latest build"
+  shell: cat /tmp/idea.json | grep -oP "(?<=\"build\".\").*?(?=\",)" | head -1
+  register: idea_build
+
+# get current installed
+- name: "get installed IntelliJ Files"
+  find:
+    paths: "/usr/share"
+    patterns: "idea-IU*"
+    file_type: directory
+    recurse: no
+  register: idea_old
+
+- name: "check if already installed"
+  debug:
+    msg: "{{ idea_old.files | length > 0 }}"
+  register: is_installed
+
+- name: "check if installed build number not equal to latest published one"
+  debug:
+    msg: "{{ idea_old.files | sort(attribute='ctime') | map(attribute='path') | last | regex_replace('/usr/share/idea-IU-', '') != idea_build.stdout }}"
+  register: need_update
+  when: "is_installed.msg|bool"
+
+# uninstall if already installed and build is not equal
+- name: "uninstall old IntelliJ Ultimate"
+  become: yes
+  file:
+    path: "/usr/share//usr/share/idea-IU-{{ idea_build.stdout }}"
+    state: absent
+  when: "is_installed.msg|bool and need_update.msg|bool"
+
+# install if not already installed or build was not equal
+- name: "install IntelliJ Ultimate"
+  become: yes
+  unarchive:
+    src: "https://download-cdn.jetbrains.com/idea/ideaIU-{{ version }}.tar.gz"
+    dest: "/usr/share/"
+    remote_src: yes
+  when: "not is_installed.msg|bool or need_update.msg|bool"
+
+# set configuration
+#Configuration (idea.config.path): ~/.config/JetBrains/IntelliJIdea2022.2 TODO
+
+# install plugins
+#Plugins (idea.plugins.path): ~/.local/share/JetBrains/IntelliJIdea2022.2 TODO
+
+# config system
+#System (idea.system.path): ~/.cache/JetBrains/IntelliJIdea2022.2 TODO
