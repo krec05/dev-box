@@ -50,6 +50,11 @@
     remote_src: yes
   when: "not is_installed.msg|bool or need_update.msg|bool"
 
+- name: "create desktop entry"
+  template:
+    src: "files/IntelliJ.desktop.template"
+    dest: "/home/vagrant/Desktop/IntelliJ.desktop"
+
 # set configuration
 #Configuration (idea.config.path): ~/.config/JetBrains/IntelliJIdea2022.2 TODO
 

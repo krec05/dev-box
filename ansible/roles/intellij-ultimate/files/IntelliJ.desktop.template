@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=IntelliJ Ultimate
+Exec=/usr/share/idea-IU-{{ idea_build.stdout }}/bin/idea.sh
+Terminal=false
+StartupNotify=true
+Comment=The Drive to Develop
+Categories=Development;IDE;
+Icon=/usr/share/idea-IU-{{ idea_build.stdout }}/bin/idea.svg
