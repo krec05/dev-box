@@ -5,10 +5,6 @@
     url: "https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&type=release"
     dest: "/tmp/idea.json"
 
-- name: "get latest version"
-  shell: cat /tmp/idea.json | grep -oP "\d{4}\.\d{1}\.\d{1}" | head -1
-  register: idea_version
-
 - name: "get latest build"
   shell: cat /tmp/idea.json | grep -oP "(?<=\"build\".\").*?(?=\",)" | head -1
   register: idea_build
@@ -50,16 +46,33 @@
     remote_src: yes
   when: "not is_installed.msg|bool or need_update.msg|bool"
 
+# add desktop entry
+- name: "check if desktop entry already exists"
+  stat:
+    path: "/home/vagrant/Desktop/IntelliJ.desktop"
+  register: desktop_entry
+
 - name: "create desktop entry"
   template:
     src: "files/IntelliJ.desktop.template"
     dest: "/home/vagrant/Desktop/IntelliJ.desktop"
+  when: not desktop_entry.stat.exists
+
+# install plugins
+- name: "install plugins"
+  include: plugin.yml
+  with_items:
+    - { "plugin":["plugin_name":"EclipseFormatter", "plugin_number":"6546", "idea_build": "{{ idea_build.stdout }}"] }
+#  .ignore
+#  Batch Scripts Support
+#Jakarta EE: Enterprise Java Beans (EJB)
+#Jakarta EE: Server Faces (JSF)
+#  PMDPlugin
+#  Save Actions
+
 
 # set configuration
 #Configuration (idea.config.path): ~/.config/JetBrains/IntelliJIdea2022.2 TODO
-
-# install plugins
-#Plugins (idea.plugins.path): ~/.local/share/JetBrains/IntelliJIdea2022.2 TODO
 
 # config system
 #System (idea.system.path): ~/.cache/JetBrains/IntelliJIdea2022.2 TODO
