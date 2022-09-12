@@ -62,14 +62,13 @@
 - name: "install plugins"
   include: plugin.yml
   with_items:
-    - { "plugin":["plugin_name":"EclipseFormatter", "plugin_number":"6546", "idea_build": "{{ idea_build.stdout }}"] }
-#  .ignore
-#  Batch Scripts Support
-#Jakarta EE: Enterprise Java Beans (EJB)
-#Jakarta EE: Server Faces (JSF)
-#  PMDPlugin
-#  Save Actions
-
+    - { "plugin":["plugin_name":"EclipseFormatter", "plugin_number":"6546", "plugin_dir":"EclipseFormatter", "idea_build": "{{ idea_build.stdout }}"] }
+    - { "plugin":["plugin_name":".ignore", "plugin_number":"7495", "plugin_dir":".ignore", "idea_build": "{{ idea_build.stdout }}"] }
+    - { "plugin":["plugin_name":"idea-batch", "plugin_number":"265", "plugin_dir":"EclipseFormatter", "idea_build": "{{ idea_build.stdout }}"] }
+    - { "plugin":["plugin_name":"EJB", "plugin_number":"16939", "plugin_dir":"EJB", "idea_build": "{{ idea_build.stdout }}"] }
+    - { "plugin":["plugin_name":"JSF", "plugin_number":"18583", "plugin_dir":"JSF", "idea_build": "{{ idea_build.stdout }}"] }
+    - { "plugin":["plugin_name":"PMDPlugin", "plugin_number":"1137", "plugin_dir":"PMDPlugin", "idea_build": "{{ idea_build.stdout }}"] }
+    - { "plugin":["plugin_name":"save-actions", "plugin_number":"7642", "plugin_dir":"intellij-plugin-save-actions-2.3.0.jar", "idea_build": "{{ idea_build.stdout }}"] }
 
 # set configuration
 #Configuration (idea.config.path): ~/.config/JetBrains/IntelliJIdea2022.2 TODO
