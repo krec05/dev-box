@@ -59,7 +59,7 @@
   when: not desktop_entry.stat.exists
 
 # install plugins
-- name: "install plugins"
+- name: "install plugin"
   include: plugin.yml
   with_items:
     - { "plugin":["plugin_name":"EclipseFormatter", "plugin_number":"6546", "plugin_dir":"EclipseFormatter", "idea_build": "{{ idea_build.stdout }}"] }
@@ -69,6 +69,10 @@
     - { "plugin":["plugin_name":"JSF", "plugin_number":"18583", "plugin_dir":"JSF", "idea_build": "{{ idea_build.stdout }}"] }
     - { "plugin":["plugin_name":"PMDPlugin", "plugin_number":"1137", "plugin_dir":"PMDPlugin", "idea_build": "{{ idea_build.stdout }}"] }
     - { "plugin":["plugin_name":"save-actions", "plugin_number":"7642", "plugin_dir":"intellij-plugin-save-actions-2.3.0.jar", "idea_build": "{{ idea_build.stdout }}"] }
+
+- name: "install plugins"
+  include: plugins.yml
+  with_items: "{{ plugins }}"
 
 # set configuration
 #Configuration (idea.config.path): ~/.config/JetBrains/IntelliJIdea2022.2 TODO

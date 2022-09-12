@@ -1,0 +1,33 @@
+---
+# check if plugin is installed
+- name: "check if {{ item.plugin_name }} plugin already exists"
+  stat:
+        path: "/usr/share/idea-IU-{{ idea_build.stdout }}/plugins/{{ item.plugin_dir }}"
+  register: plugin_file
+
+# install if not already installed
+- block:
+        - name: "get {{ item.plugin_name }} plugin json"
+          get_url:
+                url: "https://plugins.jetbrains.com/api/plugins/{{ item.plugin_number }}/updates"
+                dest: "/tmp/idea-plugin.json"
+
+        - name: "get {{ item.plugin_name }} plugin url"
+          shell: cat /tmp/idea-plugin.json | grep -oP "(?<=\"file\".\").*?(?=\",)" | head -1
+          register: plugin_url
+
+        - name: "download {{ item.plugin_name }} plugin zip file"
+          become: yes
+          unarchive:
+                src: "https://plugins.jetbrains.com/files/{{ plugin_url.stdout }}"
+                dest: "/usr/share/idea-IU-{{ idea_build.stdout     }}/plugins"
+                remote_src: yes
+          when: plugin_url.stdout.endswith('.zip')
+
+        - name: "download {{ item.plugin_name }} plugin zip file"
+          become: yes
+          get_url:
+                url: "https://plugins.jetbrains.com/files/{{ plugin_url.stdout }}"
+                dest: "/usr/share/idea-IU-{{ idea_build.stdout     }}/plugins"
+          when: plugin_url.stdout.endswith('.jar')
+  when: not plugin_file.stat.exists

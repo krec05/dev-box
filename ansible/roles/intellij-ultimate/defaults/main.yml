@@ -1,0 +1,27 @@
+---
+# all plugins
+plugins:
+  - plugin_name: "EclipseFormatter"
+    plugin_number: "6546"
+    plugin_dir: "EclipseFormatter"
+  - plugin_name: ".ignore"
+    plugin_number: "7495"
+    plugin_dir: ".ignore"
+  - plugin_name: "idea-batch"
+    plugin_number: "265"
+    plugin_dir: "EclipseFormatter"
+  - plugin_name: "EJB"
+    plugin_number: "16939"
+    plugin_dir: "EJB"
+  - plugin_name: "JSF"
+    plugin_number: "18583"
+    plugin_dir: "JSF"
+  - plugin_name: "PMDPlugin"
+    plugin_number: "1137"
+    plugin_dir: "PMDPlugin"
+  - plugin_name: "save-actions"
+    plugin_number: "7642"
+    plugin_dir: "intellij-plugin-save-actions-2.3.0.jar"
+
+# need for internal use
+idea_build: "{{ idea_build }}"
