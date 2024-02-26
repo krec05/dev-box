@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  connection: local
+  strategy: debug
+
+  roles:
+    - role: apt-update
+    - role: apt-install-items
+      packages:
+        - software-properties-common
+        - vim
+        - curl
+        - unzip
+        - git
+        - terminator
+        - language-pack-de
+    - role: german-keyboard
