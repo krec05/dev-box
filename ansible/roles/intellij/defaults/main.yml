@@ -1,0 +1,2 @@
+version: "2022.1"
+download_url: "https://download.jetbrains.com/idea/ideaIU-{{ version }}.tar.gz"

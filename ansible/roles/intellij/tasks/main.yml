@@ -1,0 +1,12 @@
+# Todo wie kann man entscheiden, per variable aus playbook, ob community oder ultimate
+# TODO wie kann die Lizenz für Ultimate direkt installiert werden
+# TODO wie können die Plugins direkt installiert werden
+# TODO wie können die Einstellungen getätigt werden
+# TODO wie können Run Configuration eingerichtet werden
+# TODO wie kann JBoss eingerichtet werden
+# TODO wie kann lokale DB eingebunden werden
+
+#sudo snap install intellij-idea-ultimate --stable --classic # zum installieren, beim zweiten mal wird fehler geworfen, der ignoriert werden kann
+#snap list | grep intellij-idea-ultimate # zum prüfen ob bereits installiert
+#snap refresh # um alles einem update zu unterziehen
+## muss dann prüfen, ob bei der version 2022.2 auch die aktuelle version installiert wird
